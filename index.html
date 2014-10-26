@@ -6,11 +6,48 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <link rel="stylesheet" href="style/style.css">
 
 </head>
 <body>
-<div class="container">
-
+<div class="container ">
+    <div class="jumbotron text-center">
+        <h1>Welcome in TODO list :)
+            <span class="label label-info">Aktualnie masz 0 zadań.</span></h1>
+    </div>
+</div>
+<div class="container ">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="list-group">
+            <li class="list-group-item active">Lista zadań</li>
+            <li class="list-group-item">
+                <form class="form-inline">
+                    <input type="text" class="input-lg text-center" style="width:700px"
+                           placeholder="Dodaj zadanie np. wynieść śmieci">
+                    <button type="submit" class="btn btn-primary btn-lg"
+                            style="margin-left:55px"><span class="glyphicon glyphicon-plus"> Dodaj  </span>
+                    </button>
+                </form>
+            </li>
+            <li class="list-group-item">
+                <div class="form-inline">
+                    <div class="form-group col-md-8">
+                        Wynieść śmieci.
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-default btn-lg" style="margin-left:40px">
+                            <span class="glyphicon glyphicon-ok"></span> Done
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-default btn-lg" style="margin-left:20px">
+                            <span class="glyphicon glyphicon-remove"></span> Remove
+                        </button>
+                    </div>
+                </div>
+            </li>
+        </div>
+    </div>
 </div>
 </body>
 </html>

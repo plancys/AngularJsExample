@@ -1,0 +1,35 @@
+html {
+    overflow-y: scroll;
+}
+
+body {
+    padding-top: 50px;
+}
+
+#todo-list {
+    margin-bottom: 30px;
+}
+
+.jumbotron {
+    /*background-image: url(http://images.nationalgeographic.com/wpf/media-live/photos/000/716/cache/canvasback-ducks-maryland_71644_990x742.jpg);*/
+    background-size: cover;
+    background-repeat: no-repeat
+}
+
+.jumbotron h1 {
+    font-weight: bold;
+}
+
+.bigger {
+    margin-top: -4px;
+    font-size: 150%;
+}
+
+.blue2 {
+    color: #8C84BF;
+}
+
+.green2 {
+    color: #02A10F;
+
+}
