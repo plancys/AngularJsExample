@@ -1,47 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="todo">
 <head>
     <meta charset="utf-8">
     <title>Todo List - Kamil Kalandyk</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script type="application/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="application/javascript" src="angular.js"></script>
+    <script type="application/javascript" src="app.js"></script>
     <link rel="stylesheet" href="style/style.css">
-
+    <style>
+        .done {
+            text-decoration: line-through;
+            color: gray;
+        }
+    </style>
 </head>
 <body>
-<div class="container ">
+<div ng-controller="TodoController as todoCtrl" class="container ">
     <div class="jumbotron text-center">
         <h1>Welcome in TODO list :)
-            <span class="label label-info">Aktualnie masz 0 zadań.</span></h1>
+            <span class="label label-info">Aktualnie masz {{todoCtrl.products.length}} TODO.</span></h1>
     </div>
 </div>
 <div class="container ">
     <div class="col-md-10 col-md-offset-1">
-        <div class="list-group">
+        <!-- NG-CONTROLLER directive-->
+        <div ng-controller="TodoController as todoCtrl" class="list-group">
             <li class="list-group-item active">Lista zadań</li>
             <li class="list-group-item">
-                <form class="form-inline">
-                    <input type="text" class="input-lg text-center" style="width:700px"
-                           placeholder="Dodaj zadanie np. wynieść śmieci">
+                <!--NG-CONTROLLER && NG-SUBMIT-->
+                <form name="addingForm"
+                      ng-submit="addingForm.$valid && todoCtrl.addNew(desc); desc = null"
+                      class="form-inline">
+                    <!--VALIDATION-->
+                    <input ng-model="desc" type="text" class="input-lg text-center" style="width:700px"
+                           placeholder="Dodaj zadanie np. wynieść śmieci" required>
                     <button type="submit" class="btn btn-primary btn-lg"
                             style="margin-left:55px"><span class="glyphicon glyphicon-plus"> Dodaj  </span>
                     </button>
                 </form>
             </li>
-            <li class="list-group-item">
+            <!-- NG-REPEAT directive-->
+            <li ng-repeat="todo in todoCtrl.products" class="list-group-item">
                 <div class="form-inline">
                     <div class="form-group col-md-8">
-                        Wynieść śmieci.
+                        <!--!! EXPRESION !!-->
+                        <h4 ng-class="{done: todo.done}">{{todo.desc}}</h4>
                     </div>
                     <div class="form-group">
-                        <button type="button" class="btn btn-default btn-lg" style="margin-left:40px">
-                            <span class="glyphicon glyphicon-ok"></span> Done
+                        <!--NG-CLICK directive-->
+                        <button ng-click="todo.done = !todo.done"
+                                type="button" class="btn btn-default btn-lg"
+                                style="width: 150px;">
+                            <span class="glyphicon glyphicon-ok"></span>
+                            {{ !todo.done ? 'Ukończono' : 'Nie zrobione'}}
                         </button>
                     </div>
                     <div class="form-group">
-                        <button type="button" class="btn btn-default btn-lg" style="margin-left:20px">
-                            <span class="glyphicon glyphicon-remove"></span> Remove
+                        <button ng-click="todoCtrl.removeTodo($index)"
+                                type="button" class="btn btn-default btn-lg" style="margin-left:20px">
+                            <span class="glyphicon glyphicon-remove"></span> Usuń
                         </button>
                     </div>
                 </div>
